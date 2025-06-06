@@ -65,6 +65,13 @@ function M.open_global_floating()
 	}
 	local win_id = vim.api.nvim_open_win(bufnr, true, win_opts)
 
+	-- set the background of the floating window to something readable
+	vim.api.nvim_win_set_option(
+		win_id,
+		"winhighlight",
+		"Normal:Normal,FloatBorder:FloatBorder"
+	)
+
 	-- make sure edits are written out on BufLeave or VimLeavePre
 	vim.api.nvim_create_autocmd({ "BufLeave", "VimLeavePre" }, {
 		buffer = bufnr,
